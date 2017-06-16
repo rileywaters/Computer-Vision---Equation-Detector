@@ -15,10 +15,10 @@ Itest = imread('test.jpg');
 ItestP = rgb2gray(Itest);
 
 %threshold to binarize
-ItestP = ItestP > 80;
+ItestP = ItestP > 75;
 
 %open and close to remove noise
-SE = strel('line',10, 10);
+SE = strel('line',5, 5);
 ItestP = imclose(ItestP, SE);
 ItestP = imopen(ItestP, SE);
 
