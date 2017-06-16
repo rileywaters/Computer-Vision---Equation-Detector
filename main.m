@@ -25,3 +25,17 @@ ItestP = imopen(ItestP, SE);
 %take complement for the regionprops
 ItestC = imcomplement(ItestP);
 imshow(ItestC);
+%% Training Image - Feature Extraction
+
+[Ltrain,Ntrain] = bwlabel(ItrainC);
+propsTrain = regionprops(Ltrain, 'all');
+
+huTrain = zeros(1,3,Ntrain);
+
+%% Testing Image - Feature Extraction
+
+[LTest,Ntest] = bwlabel(ItestC);
+propsTest = regionprops(LTest, 'all');
+
+huTest = zeros(1,3,Ntest);
+
