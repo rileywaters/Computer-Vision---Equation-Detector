@@ -1,4 +1,4 @@
-function [M1, M2, M3]= HuMoments(image)
+function [M]= HuMoments(image)
 
 % First Moment
 n20=centralMoment(2,0,image);
@@ -20,3 +20,6 @@ n21=centralMoment(2,1,image);
 n03=centralMoment(0,3,image);
 c=(n30-3*n12)^2+(3*n21-n03)^2;
 M3 = -sign(c).*(log10(abs(c)));
+
+%return moment vector with 0 in the marker slot
+M=[M1,M2,M3,0]';
