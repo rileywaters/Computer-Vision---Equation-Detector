@@ -61,3 +61,36 @@ for i=1:Ntest
     huTest(:,:,i) = HuMoments((propsTest(i).Image));
     
 end 
+
+%% Distance Measure
+
+%initialize the array for storing testing image characters
+testMatch = zeros(1,Ntest);
+
+firstRun = 1;
+%loop through all testing objects and all training objects
+for testObj=1:Ntest
+    for trainObj=1:Ntrain
+      
+            %find the distance from testing object to each training obj
+            dist = norm(huTest(:,1:3,testObj)-huTrain(:,1:3,trainObj));
+            
+            %firstRun sets the min to be the first dist value in each test
+            %number. It is only run once per test number.
+            if(firstRun==1)
+                min = dist;
+                %testMatch(testObj) = Detect(trainObj);
+                %Detect is some unmade swap function
+                firstRun=0;
+                
+            
+            elseif(dist<min)
+                min = dist;
+                %Find the character that the minimum distance belongs to
+                %testMatch(testObj) = Detect(trainObj);
+               
+            end
+     end  
+      
+    firstRun = 1;
+end
