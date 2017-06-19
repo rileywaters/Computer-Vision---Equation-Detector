@@ -79,7 +79,7 @@ for testObj=1:Ntest
             %number. It is only run once per test number.
             if(firstRun==1)
                 min = dist;
-                %testMatch(testObj) = Detect(trainObj);
+                testMatch(testObj) = Detect(trainObj);
                 %Detect is some unmade swap function
                 firstRun=0;
                 
@@ -87,7 +87,7 @@ for testObj=1:Ntest
             elseif(dist<min)
                 min = dist;
                 %Find the character that the minimum distance belongs to
-                %testMatch(testObj) = Detect(trainObj);
+                testMatch(testObj) = Detect(trainObj);
                
             end
      end  
