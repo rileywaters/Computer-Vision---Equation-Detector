@@ -42,6 +42,10 @@ for i=1:Ntrain
     %for each object, show boundingbox and take 3 hu moments
     rectangle('Position',propsTrain(i).BoundingBox,'EdgeColor','r')
     huTrain(:,:,i) = HuMoments((propsTrain(i).Image));
+    if(propsTrain(i).Eccentricity >= 0.99)
+        %objects that are '/' get a 1 in the marker slot
+        huTrain(:,4,i) = 1;
+    end
     
 end    
 
@@ -59,7 +63,10 @@ for i=1:Ntest
     %for each object, show boundingbox and take 3 hu moments
     rectangle('Position',propsTest(i).BoundingBox,'EdgeColor','r')
     huTest(:,:,i) = HuMoments((propsTest(i).Image));
-    
+    if(propsTest(i).Eccentricity >= 0.99)
+        %objects that are '/' get a 1 in the marker slot
+        huTest(:,4,i) = 1;
+    end
 end 
 
 %% Distance Measure
@@ -71,6 +78,10 @@ firstRun = 1;
 %loop through all testing objects and all training objects
 for testObj=1:Ntest
     for trainObj=1:Ntrain
+            if(huTest(:,4,testObj)==1)
+                %if the object is known to be '/', set character accordingly
+                testMatch(testObj) = Detect(15);
+            end
       
             %find the distance from testing object to each training obj
             dist = norm(huTest(:,1:3,testObj)-huTrain(:,1:3,trainObj));
