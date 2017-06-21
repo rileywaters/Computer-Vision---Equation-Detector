@@ -94,3 +94,18 @@ for testObj=1:Ntest
       
     firstRun = 1;
 end
+
+%output the objects and its equation
+detected = char(testMatch);
+fprintf('Detected Result in Test Image: %s\n', detected)
+imshow(Itest);
+
+
+try
+    result = eval(detected);
+    fprintf('Result of the equation is: %10.5f\n', result);
+catch 
+    %if the equation is invalid, give a warning
+    warning('Detected equation not valid, please try another image');
+end
+
