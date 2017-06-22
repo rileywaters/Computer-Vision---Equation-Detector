@@ -45,8 +45,10 @@ for i=1:Ntrain
     if(propsTrain(i).Eccentricity >= 0.99)
         %objects that are '/' get a 1 in the marker slot
         huTrain(:,4,i) = 1;
+    elseif(propsTrain(i).Solidity >= 0.94)
+        %objects that are '.' or '-' get a 2 in the marker slot
+        huTrain(:,4,i) = 2;
     end
-    
 end    
 
 %% Testing Image - Feature Extraction
@@ -66,8 +68,13 @@ for i=1:Ntest
     if(propsTest(i).Eccentricity >= 0.99)
         %objects that are '/' get a 1 in the marker slot
         huTest(:,4,i) = 1;
+    elseif(propsTest(i).Solidity >= 0.94)
+         %objects that are '.' or '-' get a 2 in the marker slot
+        huTest(:,4,i) = 2;
     end
 end 
+
+
 
 %% Distance Measure
 
@@ -78,11 +85,24 @@ firstRun = 1;
 %loop through all testing objects and all training objects
 for testObj=1:Ntest
     for trainObj=1:Ntrain
-            if(huTest(:,4,testObj)==1)
-                %if the object is known to be '/', set character accordingly
-                testMatch(testObj) = Detect(15);
+        
+        if(huTest(:,4,testObj)==1)
+            %if the object is known to be '/', set character accordingly
+            testMatch(testObj) = Detect(15);
+       
+        elseif(huTest(:,4,testObj)==2)
+            %if the object is known to be '.' or '-'...
+            %find if the first hu number is closer to '.' or '-'
+            dist1 = norm(huTest(:,1,testObj)- huTrain(:,1,11));
+            dist2 = norm(huTest(:,1,testObj)- huTrain(:,1,13));
+            %set character accordingly
+            if(dist1<dist2)
+                testMatch(testObj) = Detect(11);
+            else
+                testMatch(testObj) = Detect(13);
             end
-      
+        %if the object is not '/', '.' or '-'...
+        else
             %find the distance from testing object to each training obj
             dist = norm(huTest(:,1:3,testObj)-huTrain(:,1:3,trainObj));
             
@@ -91,7 +111,6 @@ for testObj=1:Ntest
             if(firstRun==1)
                 min = dist;
                 testMatch(testObj) = Detect(trainObj);
-                %Detect is some unmade swap function
                 firstRun=0;
                 
             
@@ -100,9 +119,11 @@ for testObj=1:Ntest
                 %Find the character that the minimum distance belongs to
                 testMatch(testObj) = Detect(trainObj);
                
+            
             end
-     end  
+        end  
       
+    end
     firstRun = 1;
 end
 
@@ -119,4 +140,5 @@ catch
     %if the equation is invalid, give a warning
     warning('Detected equation not valid, please try another image');
 end
+
 
