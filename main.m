@@ -119,7 +119,11 @@ for testObj=1:Ntest
                 %Find the character that the minimum distance belongs to
                 testMatch(testObj) = Detect(trainObj);
                
-            
+                if(testMatch(testObj) == '6' || testMatch(testObj) == '9')
+                     %if a 6 or 9 is detected, send it to the Detect6or9
+                     %function to do a split recheck
+                    testMatch(testObj) = Detect6or9((propsTest(testObj).Image));
+                end
             end
         end  
       
