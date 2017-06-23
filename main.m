@@ -4,14 +4,14 @@ warning('off', 'Images:initSize:adjustingMag');
 %% Training Image - Preprocessing
 
 %take the input training image complement for regionprops
-Itrain = imread('train.png');
+Itrain = imread('train2.png');
 ItrainC = imcomplement(Itrain);
 imshow(ItrainC);
 
 %% Testing Image - Preprocessing
 
 %take in the testing image
-Itest = imread('test.jpg');
+Itest = imread('test2.jpg');
 ItestP = rgb2gray(Itest);
 
 %threshold to binarize
