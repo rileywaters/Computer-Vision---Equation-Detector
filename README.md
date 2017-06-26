@@ -39,4 +39,26 @@ In a similar manner, ‘/’ has a unique eccentricity that is consistently >=0.
 
 An attempt was made to use Euler numbers to further separate characters. In theory, ‘8’ will have a unique Euler number of -1, and ‘4’, ‘6’, ‘9’, and ‘0’ will have 0. The idea was to use Euler numbers to separate these characters beforehand. However, testing regions sometimes had incorrect Euler numbers due to noise producing small holes in the objects. It was decided that this adjustment was too dependant on having perfect preprocessing, so it was not used. 
  
-Differentiating the ‘6’ and ‘9’ was an expected problem when using this method. Both had very close Hu moment values due to the rotation invariance of the moments. Deshpande’s suggested method was implemented to solve this. Whenever a ‘6’ or ‘9’ is detected, the region image is sent to a different function that splits the image into top and bottom half. The areas of each half are compared and the character is detected as a ‘9’ if the top area is larger than the bottom, otherwise it is a ‘6’. This resulted in a 100% detection of ‘6’ and ‘9’ in testing.   
+Differentiating the ‘6’ and ‘9’ was an expected problem when using this method. Both had very close Hu moment values due to the rotation invariance of the moments. Deshpande’s suggested method was implemented to solve this. Whenever a ‘6’ or ‘9’ is detected, the region image is sent to a different function that splits the image into top and bottom half. The areas of each half are compared and the character is detected as a ‘9’ if the top area is larger than the bottom, otherwise it is a ‘6’. This resulted in a 100% detection of ‘6’ and ‘9’ in testing.
+
+**Experimental Results** 
+
+A single training image was used for all tests. 10 testing images that had 20 random numbers/operators were printed out. Picture were taken of them using an iPhone 6 and the accuracy of each character results were recorded. 
+
+Most operators had a near perfect detection rate. The lowest detection rates involved the ‘1’s being detected as ‘7’s, and 3’s as ‘2’s. Overall, the accuracy is reasonable.  
+
+Different sized training images were also tested. In theory, this should not make a difference because Hu moments are invariant to size. However, results indicate that the larger training image had about 10% higher accuracy than the smaller one. This is likely because Hu moments are scale invariant only if the amount of region information is the same in both scales. In this case, the smaller training image lost a bit of region information during resizing, causing different moments. 
+ 
+**Results Discussion**
+
+Several factors limit the final system: - The quality of testing and training images make a big difference in the results.  - Images with high noise will have less accurate results even after preprocessing.  - Similar fonts to the training image must be used, or the system must be retrained using the same font as the testing image. - Characters can only be printed in a straight line. This is because of the order that the system identifies regions. 
+ 
+The system has high accuracy if the testing image is of a similar style to the training images. It also runs in O(nm), where n is the amount of training objects and m is the amount of testing objects. The system is best at detecting operators, ‘6’, ‘9’, and ‘8’.  Other numbers will occasionally get incorrectly detected. 
+
+**Conclusion and Future Work **
+
+ The system can properly receive an input image and extract the numbers and operators with good accuracy given limited distortion and good resolution. Several additional features can be compared alongside the Hu moments to identify numbers and operators in images. 
+ 
+ Many improvements can be made as the next step of this project. Other shape descriptors could be used to improve accuracy such as boundary codes. The system could be updated to identify other characters (letters) and operators (square root, exponents, parentheses). It could also be changed to detect equations that span multiple lines by reordering the detection function.  
+ 
+ 
