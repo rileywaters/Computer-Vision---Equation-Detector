@@ -2,7 +2,7 @@
 An optical number recognition system that detects printed equations in images and solves them.
 A personal project by Riley Waters (completed 2017/06/22).
 
-![Alt text](/sample1.PNG?raw=true "Sample output of a simple handwritten equation")
+![Alt text](/sample1.png?raw=true "Sample output of a simple handwritten equation")
 
 **Abstract**  
 
