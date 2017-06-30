@@ -2,6 +2,8 @@
 An optical number recognition system that detects printed equations in images and solves them.
 A personal project by Riley Waters (completed 2017/06/22).
 
+![Alt text](/Sample.PNG?raw=true "Sample output of a simple handwritten equation")
+
 **Abstract**  
 
 The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image and finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than other machine learning solutions.
@@ -39,4 +41,4 @@ In a similar manner, ‘/’ has a unique eccentricity that is consistently >=0.
 
 An attempt was made to use Euler numbers to further separate characters. In theory, ‘8’ will have a unique Euler number of -1, and ‘4’, ‘6’, ‘9’, and ‘0’ will have 0. The idea was to use Euler numbers to separate these characters beforehand. However, testing regions sometimes had incorrect Euler numbers due to noise producing small holes in the objects. It was decided that this adjustment was too dependant on having perfect preprocessing, so it was not used. 
  
-Differentiating the ‘6’ and ‘9’ was an expected problem when using this method. Both had very close Hu moment values due to the rotation invariance of the moments. Deshpande’s suggested method was implemented to solve this. Whenever a ‘6’ or ‘9’ is detected, the region image is sent to a different function that splits the image into top and bottom half. The areas of each half are compared and the character is detected as a ‘9’ if the top area is larger than the bottom, otherwise it is a ‘6’. This resulted in a 100% detection of ‘6’ and ‘9’ in testing.   
+Differentiating the ‘6’ and ‘9’ was an expected problem when using this method. Both had very close Hu moment values due to the rotation invariance of the moments. Deshpande’s suggested method was implemented to solve this. Whenever a ‘6’ or ‘9’ is detected, the region image is sent to a different function that splits the image into top and bottom half. The areas of each half are compared and the character is detected as a ‘9’ if the top area is larger than the bottom, otherwise it is a ‘6’. This resulted in a 100% detection of ‘6’ and ‘9’ in testing.
