@@ -1,9 +1,10 @@
 # Computer Vision - Equation Detector
-![Alt text](/ReportImages/sample1.png?raw=true "Sample output of a simple handwritten equation")
+![Alt text](/ReportImages/sample1.png?raw=true "Sample Output")
 
 **Abstract**
  
-   The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image and finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than other machine learning solutions.
+   The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image. finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than machine learning solutions.
+![Alt text](/ReportImages/Process.PNG?raw=true "Overall Algorithm Process") 
     
 <details>
 <summary>Introduction and Background Description</summary>
@@ -107,5 +108,5 @@ equations that span multiple lines by reordering the detection function.</p>
 <summary>References</summary>
 <p>-Deshpande, A. B. (2012). Vision based system for optical number recognition. International Journal of Computer Applications, 37(1)</p>
 <p>-Lacrama, D. L., and Snep, I. (2009). The use of invariant moments in hand-written character recognition.</p>
-<p>-Zekovich, S amd Tuba, M. (2013). Hu Moments Based Handwritten Digits Recognition Algorithm. _Recent Advances in Knowledge Engineering and Systems Science._</p>
+<p>-Zekovich, S amd Tuba, M. (2013). Hu Moments Based Handwritten Digits Recognition Algorithm. <i>Recent Advances in Knowledge Engineering and Systems Science._</i></p>
 </details>
