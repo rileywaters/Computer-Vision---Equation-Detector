@@ -2,20 +2,23 @@
 ![Alt text](/ReportImages/sample1.png?raw=true "Sample output of a simple handwritten equation")
 
 **Abstract**
+ 
    The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image and finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than other machine learning solutions.
     
 <details>
 <summary>Introduction and Background Description</summary>
    Optical number recognition is the automatic recognition of numbers by computers in images or digitized text. It has many uses in automated guided vehicles, digital library scanning, and packaging industries. It is challenging to create a consistent number recognition system because of differences in writing styles/ fonts, positions of the text, image quality, and noise. 
-
+ 
    Number recognition is often done by extracting features of characters that, together, are unique to that character. Some of the features that can be used for this are the Hu moments of an image. These are seven moments that are invariant to translation, scale, and rotation. They are found by performing different calculations on different normalized central moments of the image.
-
-   Some other region features that were used in this project are the eccentricity of an image (how circular the object is), the solidity (the proportion of the pixels in the convex hull to the region), and Euler numbers (the number of objects in an image minus the number of holes). 
+ 
+   Some other region features that were used in this project are the eccentricity of an image (how circular the object is), the solidity (the proportion of the pixels in the convex hull to the region), and Euler numbers (the number of objects in an image minus the number of holes).
+    
 </details>
 
 <details>
 <summary>Problem Statement</summary>
-   Many jobs involve interpreting numbers and equations from printed text. Doing this manually is tedious and has a high chance of error. A system is needed that can take in an image of text and interpret numbers and operators from it automatically, solving any valid equations it detects. The system needs to be invariant to scale, rotation, or translation of numbers in the image. 
+   Many jobs involve interpreting numbers and equations from printed text. Doing this manually is tedious and has a high chance of error. A system is needed that can take in an image of text and interpret numbers and operators from it automatically, solving any valid equations it detects. The system needs to be invariant to scale, rotation, or translation of numbers in the image.
+    
 </details>
 
 <details>
@@ -24,7 +27,8 @@
     
    Zekovich and Tuba (2013) proposed an algorithm for detecting handwritten digits using Hu moments. This algorithm uses similar moment extraction of characters, followed by putting the moments into separate Support Vector Machines that classify the characters from those moments. Information from this paper was used to investigate handwritten number recognition possibilities of the project.
     
-   Lacrama and Snep (2006) implemented a neural network that was trained using data from invariant moments of characters. The network was used to test handwritten character recognition. This paper clarified other methods of character recognition as well as their strengths and weaknesses.  
+   Lacrama and Snep (2006) implemented a neural network that was trained using data from invariant moments of characters. The network was used to test handwritten character recognition. This paper clarified other methods of character recognition as well as their strengths and weaknesses. 
+    
 </details>
   
 <details>
@@ -37,7 +41,8 @@
 <p align="left">
   <img src="/ReportImages/figure2.PNG" width="400"/>
 </p>
-   The comparison was done by looping through each testing and training region and finding which training regions had the most similar Hu numbers to each testing region. Arrays with minimum distance should have be the same characters.   
+   The comparison was done by looping through each testing and training region and finding which training regions had the most similar Hu numbers to each testing region. Arrays with minimum distance should have be the same characters.
+    
 </details>
 
 <details>
@@ -66,6 +71,7 @@
 <p align="left">
   <img src="/ReportImages/figure8.PNG" width="400"/>
 </p>
+ 
 </details>
 
 <details>
@@ -75,32 +81,35 @@
   <img src="/ReportImages/CharacterAccuracy.PNG" width="400"/>
 </p>
    Most operators had a near perfect detection rate. The lowest detection rates involved the ‘1’s being detected as ‘7’s, and 3’s as ‘2’s. Overall, the accuracy is reasonable.
-
-   Different sized training images were also tested. In theory, this should not make a difference because Hu moments are invariant to size. However, results indicate that the larger training image had about 10% higher accuracy than the smaller one. This is likely because Hu moments are scale invariant
-only if the amount of region information is the same in both scales. In this case, the smaller training image lost a bit of region information during resizing, causing different moments.
+ 
+   Different sized training images were also tested. In theory, this should not make a difference because Hu moments are invariant to size. However, results indicate that the larger training image had about 10% higher accuracy than the smaller one. This is likely because Hu moments are scale invariant only if the amount of region information is the same in both scales. In this case, the smaller training image lost a bit of region information during resizing, causing different moments.
 <p align="left">
   <img src="/ReportImages/TrainingImageAccuracy.PNG" width="400"/>
 </p>
+ 
 </details>
 
 <details>
 <summary>Results Discussion</summary>
-Several factors limit the final system:
-- The quality of testing and training images make a big difference in the results.
-- Images with high noise will have less accurate results even after preprocessing.
-- Similar fonts to the training image must be used, or the system must be retrained
-using the same font as the testing image.
-- Characters can only be printed in a straight line. This is because of the order that the system identifies regions.
+Several factors limit the final system
 
+ - The quality of testing and training images make a big difference in the results.
+ 
+ - Images with high noise will have less accurate results even after preprocessing.
+
+ - Similar fonts to the training image must be used, or the system must be retrained using the same font as the testing image.
+
+ - Characters can only be printed in a straight line. This is because of the order that the system identifies regions.
+ 
    The system has high accuracy if the testing image is of a similar style to the training images. It also runs in O(nm), where n is the amount of training objects and m is the amount of testing objects.
-    
+ 
    The system is best at detecting operators, ‘6’, ‘9’, and ‘8’. Other numbers will occasionally get incorrectly detected.
 </details>
 
 <details>
 <summary>Conclusion and Future Work</summary>
    The system can properly receive an input image and extract the numbers and operators with good accuracy given limited distortion and good resolution. Several additional features can be compared alongside the Hu moments to identify numbers and operators in images.
-
+ 
    Many improvements can be made as the next step of this project. Other shape descriptors could be used to improve accuracy such as boundary codes. The system could be updated to identify other characters (letters) and operators (square root, exponents, parentheses). It could also be changed to detect
 equations that span multiple lines by reordering the detection function.
 </details>
@@ -108,6 +117,8 @@ equations that span multiple lines by reordering the detection function.
 <details>
 <summary>References</summary>
 -Deshpande, A. B. (2012). Vision based system for optical number recognition. International Journal of Computer Applications, 37(1)
+
 -Lacrama, D. L., and Snep, I. (2009). The use of invariant moments in hand-written character recognition.
+
 -Zekovich, S amd Tuba, M. (2013). Hu Moments Based Handwritten Digits Recognition Algorithm. _Recent Advances in Knowledge Engineering and Systems Science._
 </details>
