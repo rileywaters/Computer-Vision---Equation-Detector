@@ -1,6 +1,8 @@
 # Computer Vision - Equation Detector
 ![Alt text](/ReportImages/sample1.png?raw=true "Sample Output")
 
+A personal project by Riley Waters (2017)
+
 **Abstract**
 
    The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system begins by preprocessing training and testing images to identify the characters of interest. Certain features are extracted from each character, including their first three Hu moments and any unique identifiers such as eccentricity. A comparison is done between the features of the known training characters and the unknown testing characters. A combination of Hu moment distance measure and unique indentifiers are used to determine the identities of the testing characters. The final system has reasonable accuracy (~80%) while maintaining greater efficiency than machine learning solutions.
@@ -109,5 +111,5 @@ equations that span multiple lines by reordering the detection function.</p>
 <summary>References</summary>
 <p>-Deshpande, A. B. (2012). Vision based system for optical number recognition. International Journal of Computer Applications, 37(1)</p>
 <p>-Lacrama, D. L., and Snep, I. (2009). The use of invariant moments in hand-written character recognition.</p>
-<p>-Zekovich, S amd Tuba, M. (2013). Hu Moments Based Handwritten Digits Recognition Algorithm. <i>Recent Advances in Knowledge Engineering and Systems Science._</i></p>
+<p>-Zekovich, S amd Tuba, M. (2013). Hu Moments Based Handwritten Digits Recognition Algorithm. <i>Recent Advances in Knowledge Engineering and Systems Science.</i></p>
 </details>
