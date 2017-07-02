@@ -2,8 +2,8 @@
 ![Alt text](/ReportImages/sample1.png?raw=true "Sample Output")
 
 **Abstract**
- 
-   The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image. finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than machine learning solutions.
+
+   The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system begins by preprocessing training and testing images to identify the characters of interest. Certain features are extracted from each character, including their first three Hu moments and any unique identifiers such as eccentricity. A comparison is done between the features of the known training characters and the unknown testing characters. A combination of Hu moment distance measure and unique indentifiers are used to determine the identities of the testing characters. The final system has reasonable accuracy (~80%) while maintaining greater efficiency than machine learning solutions.
    
 ![Alt text](/ReportImages/Process.PNG?raw=true "Overall Algorithm Process") 
     
