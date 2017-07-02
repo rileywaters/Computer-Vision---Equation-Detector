@@ -4,6 +4,7 @@
 **Abstract**
  
    The goal of this project was to create a system that can interpret and solve a basic mathematical equation from a picture of printed numbers and operators. The system does this by extracting features from a training image with known characters, then extracting those same features from a testing image. finding which training character each test character is closest to. Several improvements were made, and the final system has reasonable accuracy (~80%) while maintaining greater efficiency than machine learning solutions.
+   
 ![Alt text](/ReportImages/Process.PNG?raw=true "Overall Algorithm Process") 
     
 <details>
